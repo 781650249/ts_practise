@@ -1,11 +1,11 @@
 "use strict";
-var Gender;
-(function (Gender) {
-    Gender["male"] = "\u5E05\u54E5";
-    Gender["female"] = "\u7F8E\u5973";
-})(Gender || (Gender = {}));
-var gender;
-gender = Gender.male;
-var r = Gender.female;
-console.log(r);
-console.log(gender);
+// enum  Gender{
+//     male = '帅哥',
+//     female = '美女'
+// }
+module.exports = {
+    name: 'kevin',
+    sum: function (a, b) {
+        return a + b;
+    }
+};
