@@ -1,36 +1,59 @@
 
 
-// // Ep1
-function getMandomNum():string| number {
-    if (Math.random() > 0.5) {
-        return ' ni haoHH'
+type Deck = NormalCard[]
+
+type Color = '♥️' | '♠️' | '♦️' | '♣️';
+
+type NormalCard = {
+    color: Color
+    mark: number
+}
+
+
+function createDeck(): Deck {
+
+    const desk: Deck = []
+    for (let i = 1; i <= 13; i++) {
+        desk.push({
+            color: '♠️',
+            mark: i
+        })
+        desk.push({
+            color: '♣️',
+            mark: i
+        })
+        desk.push({
+            color: '♥️',
+            mark: i
+        })
+        desk.push({
+            color: '♦️',
+            mark: i
+        })
     }
-    return 404
-}
-
-let num = getMandomNum()
-
-
-
-
-if (typeof (num) === 'string') {
-    let newNum = num.split(' ').filter(it => it).map(item => item[0].toUpperCase() + item[1] + item.substr(2)).join(' ')
-    console.log(newNum ,2222)
+    return desk
 }
 
 
 
+function printDeck(deck: Deck) {
+    let row = '\n'
+    deck.forEach(card => {
+        let str = card.color
+        if (card.mark === 11) {
+            str += 'J'
+        } else if (card.mark === 12) {
+            str += 'Q'
+        } else if (card.mark === 13) {
+            str += 'K'
+        } else {
+            str += card.mark + row
+        }
 
-
-
-
-// Ep2 
-
-function countSum(a:number,b:number):number{
-    return a+b
+    })
+    return deck
 }
 
-let a = countSum(3,4);
+let card = createDeck()
 
-
-console.log(a)
+console.log(printDeck(card))
