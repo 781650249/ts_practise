@@ -1,6 +1,12 @@
+import { createMark, printMark } from "./func"
+console.log(createMark,'哈哈')
+let a = createMark()
+console.log(printMark(a))
 
 
+// let a =createMark()
 
+// printMark(a)
 
 //  类型别名
 
@@ -66,53 +72,3 @@
 
 // 枚举
 
-type Deck = NormalCard[]
-
-enum Color {
-    heart = '♥️',
-    spade = '♠️',
-    club = '♣️',
-    diamond = '♦️'
-}
-type NormalCard = {
-    color: Color
-    mark: Mark
-}
-
-enum Mark {
-    A = 'A',
-    two = '2',
-    three = '3',
-    four = '4',
-    five = '5',
-    six = '6',
-    seven = '7',
-    eight = '8',
-    nine = '9',
-    ten = '10',
-    eleven = '11',
-    twelve = '12'
-}
-
-
-function createMark(): Deck {
-    let desk: Deck = []
-    for (let i of Object.values(Mark)) {
-        for (let j of Object.values(Color)) {
-            desk.push({
-                color: j,
-                mark: i
-            })
-        }
-    }
-    return desk
-}
-
-function printMark(desk: Deck) {
-    desk.forEach(i=>i.color+i.mark)
-    return desk
-}
-
-let a =createMark()
-
-console.log(printMark(a))
