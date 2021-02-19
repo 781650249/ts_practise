@@ -1,36 +1,32 @@
-
-
-// // Ep1
-function getMandomNum():string| number {
-    if (Math.random() > 0.5) {
-        return ' ni haoHH'
-    }
-    return 404
+enum  Gender{
+    male = '帅哥',
+    female = '美女'
 }
 
-let num = getMandomNum()
+let gender:Gender;
+
+
+gender = Gender.male
+
+
+let  r:Gender = Gender.female
+
+console.log(r)
+
+
+console.log(gender)
 
 
 
+// 枚举自增
 
-if (typeof (num) === 'string') {
-    let newNum = num.split(' ').filter(it => it).map(item => item[0].toUpperCase() + item[1] + item.substr(2)).join(' ')
-    console.log(newNum ,2222)
+enum level {
+    level1 = 1,
+    level2,
+    level3
 }
 
 
+let L:level = 2
 
-
-
-
-
-// Ep2 
-
-function countSum(a:number,b:number):number{
-    return a+b
-}
-
-let a = countSum(3,4);
-
-
-console.log(a)
+console.log(L)  // 1
