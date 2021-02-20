@@ -67,7 +67,8 @@
 
   /* Advanced Options */
   "skipLibCheck": true /* Skip type checking of declaration files. */,
-  "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+  "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
+  "strictPropertyInitialization":true
  },
  "include": ["./src"],// 编译src的文件
  "files": ["./src/index.ts"]  //指定文件和依赖的文件
