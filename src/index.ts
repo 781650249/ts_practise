@@ -1,71 +1,18 @@
-/* 
-    无重复字符的最长字串
-*/
+// 4.寻找两个正序数组的中位数
 
-var lengthOfLongestSubstring = function (s: string): number {
-    let arr: string[] = []
-    let nums = 0
-    for (let i = 0; i < s.length; i++) {
-        let temp = s[i]
-        let _index = arr.indexOf(temp)
-        if (i && _index > -1) {
-            arr.splice(0, _index + 1)
-        }
-        arr.push(temp)
-        nums = Math.max(nums, arr.length)
+//给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。
+
+
+
+function middleNum(nums1: number[], nums2: number[]) {
+    let num = nums1.concat(nums2)
+    let len = num.length;
+
+    if (len && len % 2 === 0) {
+        return (num[len / 2 - 1] + num[len / 2]) / 2
+    } else {
+        return num[Math.floor(len / 2)]
     }
-    return nums
-};
-
-
-// function lengthOfLongestSubstring(s: string): number {
-//     let nums: number = 0
-//     let _arr: string[] = []
-//     for (let index = 0, len = s.length; index < len; index++) {
-//       let temp = s[index]
-//       index || (nums = 1)
-//       let _index = _arr.indexOf(temp)
-//       if (index && _index > -1) {
-//           _arr.splice(0,_index + 1)
-//       }
-//       _arr.push(temp)
-//       nums = Math.max(nums, _arr.length)
-//     }
-//     return nums
-//   }
-
-
-function max(s: string) {
-    let arr: string[] = []
-    let max = 0
-    for (let i of s) {
-        let index = arr.indexOf(i)
-        arr.push(i)
-        if (index !== -1) {
-            arr.splice(0, index + 1)
-        }
-        max = Math.max(arr.length, max)
-    }
-    return max
 }
-
-
-function maxLength(s: string) {
-    let arr: string[] = []
-    let max = 0
-    for (let i = 0; i < s.length; i++) {
-        let index = arr.indexOf(s[i])
-        if (index !== -1) {
-            arr.splice(0, index + 1)
-        }
-        arr.push(s[i])
-        max = Math.max(arr.length, max)
-    }
-    return max
-}
-
-
-
-let a = "pwwkew"
-console.log(max(a))
-console.log(maxLength(a))
+let nums1 = [0,0], nums2 = [0,1]
+console.log(middleNum(nums1,nums2))
