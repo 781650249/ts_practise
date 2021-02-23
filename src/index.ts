@@ -1,18 +1,68 @@
-// 4.寻找两个正序数组的中位数
+// 5. 最长回文子串
 
-//给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。
+import { rejects } from "assert"
 
 
+//给你一个字符串 s，找到 s 中最长的回文子串。
+// 输入：s = "babad"
+// 输出："bab"
+// 解释："aba" 同样是符合题意的答案。
 
-function middleNum(nums1: number[], nums2: number[]) {
-    let num = nums1.concat(nums2)
-    let len = num.length;
+/* 
+这一题，调试了很多次，每次都觉得ok了，但其实还有问题，最后终于做出来了，
+最重要的时palindrome函数，它是用来进行波纹方式的回文判断，重要的是回文其实有两种结果
+奇数长度的回文结果：'aca'、'aaa'、'a'等等
+而偶数长度的回文结果：'aaaa'、'aa'等等
+区分好这一点，对于我们的判定回文，有很大的帮助，代码如下所示：
+*/
 
-    if (len && len % 2 === 0) {
-        return (num[len / 2 - 1] + num[len / 2]) / 2
-    } else {
-        return num[Math.floor(len / 2)]
+let s = "babad"
+
+/* 
+aba
+aa
+abab
+
+ababa
+*/
+
+
+function maxStr(str: string) {
+    let len = str.length
+    let maxLen = 0
+    let res = ''
+    for (let i = 0; i < len; i++) {
+        const s = isCompane(str, i)
+        if (s.length > maxLen) {
+            maxLen = s.length
+            res = s
+        }
     }
+    return res
 }
-let nums1 = [0,0], nums2 = [0,1]
-console.log(middleNum(nums1,nums2))
+
+function isCompane(s: string, index: number) {
+    let center = index
+    let resJ = s[center]
+    let resO = ''
+    let isJ = true;
+    let isO = true;
+
+    while (index-- && (isJ || isO)) {
+        if (s[index] === s[center * 2 - index] && isJ) {
+            resJ = s[index] + resJ + s[index]
+        } else {
+            isJ = false
+        }
+        if (s[index] === s[center * 2 - index - 1] && isO) {
+            resO = s[index] + resO + s[index]
+        } else {
+            isO = false
+        }
+    }
+    return resO.length > resJ.length ? resO : resJ
+}
+
+console.log(maxStr(s))
+
+
