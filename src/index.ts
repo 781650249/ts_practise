@@ -1,18 +1,42 @@
-// 4.寻找两个正序数组的中位数
-
-//给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。
 
 
 
-function middleNum(nums1: number[], nums2: number[]) {
-    let num = nums1.concat(nums2)
-    let len = num.length;
 
-    if (len && len % 2 === 0) {
-        return (num[len / 2 - 1] + num[len / 2]) / 2
-    } else {
-        return num[Math.floor(len / 2)]
-    }
+/* 
+选择排序 
+找到最小的 依次和前面的数进行交换
+*/
+let arr = [41, 4, 5, 6, 73, 43, 53, 23]
+/* 
+4和41交换 4, 41, 5, 6, 73, 43, 53, 23
+5和41交换 4, 5, 41, 6, 73, 43, 53, 23
+6和41交换 4,5,6,41 
+
+*/
+
+function exchange(a: number, b: number, arr: number[]) {
+    let temp = arr[a]
+    arr[a] = arr[b]
+    arr[b] = temp
 }
-let nums1 = [0,0], nums2 = [0,1]
-console.log(middleNum(nums1,nums2))
+
+function compare(a: number, b: number) {
+    if (a < b) return true
+    else return false
+}
+
+
+function maoSort(arr: number[]) {
+
+    for (let i = 0; i < arr.length; i++) {
+        let minIndex = 0
+        for (let j = 0; j < arr.length - i; j++) {
+            if (compare(arr[minIndex], arr[j])) {
+                minIndex = j
+            }
+        }
+        exchange(minIndex, arr.length - i - 1, arr)
+    }
+    return arr
+}
+
