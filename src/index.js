@@ -1,73 +1,33 @@
 
-/**
- *
- * @param {*} val
- */
-function node(val) {
-    this.val = val;
-    this.next = null
-}
-
-
-let node1 = new node(1)
-let node2 = new node(2)
-let node3 = new node(3)
-let node4 = new node(4)
-let node5 = new node(5)
-
-node1.next = node2
-node2.next = node3
-node3.next = node4
-node4.next = node5
-
 
 /* 
-链表排序 逆置（数组方法）
+数组中重复的数字
 */
-// let arr = []
-// function bianli(root) {
-//   if(root ==null) return 
-//   arr.push(root.val)
-//   bianli(root.next)
-//   return arr.reverse().join('')
-// }
-
-// let resArr  = bianli(node1)
-// console.log(resArr,'resArr')
-
 
 /* 
-链表逆置 先找指向null的节点 
+
+在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+
+输入：
+[2, 3, 1, 0, 2, 5, 3]
+输出：2 或 3 
 */
 
-// function nizhi(root) {
-//     if (root.next == null) return root
-//     return nizhi(root.next)
-// }
-// console.log(nizhi(node1))  // node5
 
+let arr = [9, 2, 3, 1, 0, 2, 5, 3]
 
-/* 
-  以上方法不行 得采用 root.next.next 来逆置
-*/
-
-function nizhi(root) {
-    if (root.next.next == null) {  // node4 
-        root.next.next = root   //  5的next 本来指向null  让它指向4   暂时4让的Next指向空
-        return root.next  // node5
-    } else {
-        let result = nizhi(root.next)
-        root.next.next = root
-        root.next =  null
-        return result
+function findNum(arr) {
+    let obj = {}
+    let temp = []
+    for (let i = 0; i < arr.length; i++) {
+        if (temp.indexOf(arr[i]) !== -1) {
+            obj[arr[i]] = 1
+        } else {
+            temp.push(arr[i])
+        }
     }
-}
-let a  = nizhi(node1)
-
-function bianli(root){
-    if(root === null) return null
-    console.log(root.val)
-    bianli(root.next)
+    return Object.keys(obj)
 }
 
-console.log(bianli(a))
+
+
